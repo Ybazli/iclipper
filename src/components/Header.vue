@@ -5,7 +5,7 @@
 		style="width: 120px;"
 	>
 		<div class=" mr-1">
-			<!-- <img src="./assets/icon/logo.svg" alt="iClipper" /> -->
+			<img src="../assets/icon/logo.svg" alt="iClipper" />
 		</div>
 		<div class="font-semibold">iClipper</div>
 	</header>

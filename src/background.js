@@ -19,46 +19,30 @@ const path = require('path')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-const icon = systemPreferences.isDarkMode()
-    ? createIconFile('light-icon.png')
-    : createIconFile('dark-icon.png')
+const icon = systemPreferences.isDarkMode() ?
+    createIconFile('light-icon.png') :
+    createIconFile('dark-icon.png')
 
 //context menu
-
-// contextMenu({
-//     prepend: (params, browserWindow) => [
-//         {
-//             label: 'Quick ✌️',
-//             click: (menuItem, browserWindow, event) => {
-//                 app.quit()
-//             }
-//         }
-//     ]
-// })
-
-const contextMenu = Menu.buildFromTemplate([
-    {
-        label: 'Quick ✌️',
-        click: (menuItem, browserWindow, event) => {
-            app.quit()
-        }
+const contextMenu = Menu.buildFromTemplate([{
+    label: 'Quick ✌️',
+    click: (menuItem, browserWindow, event) => {
+        app.quit()
     }
-])
+}])
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 let tray = null
 // Scheme must be registered before the app is ready
-protocol.registerSchemesAsPrivileged([
-    {
-        scheme: 'app',
-        privileges: {
-            secure: true,
-            standard: true
-        }
+protocol.registerSchemesAsPrivileged([{
+    scheme: 'app',
+    privileges: {
+        secure: true,
+        standard: true
     }
-])
+}])
 
 function createIconFile(str) {
     return path.join(__dirname, '../src/assets/icon/', str)
@@ -78,6 +62,8 @@ function createWindow() {
     console.log(systemPreferences.isDarkMode())
 
     tray = new Tray(icon)
+
+    tray.setToolTip('iClipper')
 
     //show tray when clicked on
     tray.on('click', () => {
@@ -144,11 +130,11 @@ app.on('ready', async () => {
         // Electron will not launch with Devtools extensions installed on Windows 10 with dark mode
         // If you are not using Windows 10 dark mode, you may uncomment these lines
         // In addition, if the linked issue is closed, you can upgrade electron and uncomment these lines
-        // try {
-        //   await installVueDevtools()
-        // } catch (e) {
-        //   console.error('Vue Devtools failed to install:', e.toString())
-        // }
+        try {
+            await installVueDevtools()
+        } catch (e) {
+            console.error('Vue Devtools failed to install:', e.toString())
+        }
     }
     createWindow()
 })
