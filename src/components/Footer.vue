@@ -12,8 +12,7 @@
 		</div>
 
 		<div class="text-sm">{{ status }}</div>
-
-		<div class="font-light text-xs text-gray-500">
+		<div class="font-light text-xs text-gray-500 flex items-center">
 			<button
 				@click="removeAllEvent"
 				class="italic text-xs bg-gray-800 rounded-full px-2 text-white hover:bg-gray-900 focus:outline-none"
@@ -22,8 +21,10 @@
 			>
 				Clear All
 			</button>
-			<div class="text-xs text-gray-100">
-				<router-link to="/setting">Setting</router-link>
+			<div class="text-xs text-gray-100 ml-1">
+				<router-link to="/setting">
+					<img src="../assets/icon/cog.svg" class="w-4 h-4" alt="" />
+				</router-link>
 			</div>
 		</div>
 	</div>

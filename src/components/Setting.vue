@@ -27,6 +27,13 @@
 					v-on:chnageEvent="toggleSwitchHandler"
 				/>
 			</div>
+			<div class="flex justify-center items-center mt-5 h-20">
+				<router-link
+					to="/"
+					class="text-xs border border-gray-500 rounded-full py-2 px-6"
+					>Back</router-link
+				>
+			</div>
 		</div>
 	</div>
 </template>
@@ -34,8 +41,7 @@
 <script>
 import Header from './Header'
 import Toggle from './ToggleSwitch'
-import Store from 'electron-store'
-const store = new Store()
+import store from '../store'
 export default {
 	name: 'Setting',
 	components: {
@@ -45,18 +51,18 @@ export default {
 	created() {},
 	data() {
 		return {
-			theme: store.get('theme'),
-			fileSync: store.get('fileSync')
+			theme: store.getters.getTheme,
+			fileSync: store.getters.getFileSync
 		}
 	},
 	methods: {
 		toggleSwitchHandler(val) {
 			switch (val.name) {
 				case 'theme':
-					store.set('theme', val.value ? 'light' : 'dark')
+					store.dispatch('chnageTheme', val.value ? 'dark' : 'light')
 					break
 				case 'fileSync':
-					store.set('fileSync', val.value)
+					store.dispatch('changeFileSync', val.value)
 					break
 
 				default:
@@ -64,7 +70,7 @@ export default {
 			}
 		},
 		themeValue(val) {
-			if ((val = 'dark')) {
+			if (val === 'dark') {
 				return true
 			} else {
 				return false
