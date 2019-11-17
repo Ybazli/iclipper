@@ -55,7 +55,7 @@ export default {
 	transition: background-color 0.2s ease-in;
 }
 .form-switch-label:before {
-	@apply absolute block bg-white inset-y-0 w-6 rounded-full -ml-1 shadow-inner;
+	@apply absolute block bg-gray-200 inset-y-0 w-6 rounded-full -ml-1 shadow-inner;
 
 	right: 50%;
 	content: '';
