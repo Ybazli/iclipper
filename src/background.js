@@ -59,7 +59,7 @@ function createWindow() {
             nodeIntegration: true
         }
     })
-    console.log(systemPreferences.isDarkMode())
+    // console.log(systemPreferences.isDarkMode())
 
     tray = new Tray(icon)
 

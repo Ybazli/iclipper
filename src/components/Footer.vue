@@ -22,6 +22,9 @@
 			>
 				Clear All
 			</button>
+			<div class="text-xs text-gray-100">
+				<router-link to="/setting">Setting</router-link>
+			</div>
 		</div>
 	</div>
 	<!-- end of footer -->
