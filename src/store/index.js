@@ -8,7 +8,8 @@ const setting = require('electron-settings')
 const store = new Vuex.Store({
 	state: {
 		theme: setting.has('theme') ? setting.get('theme') : 'dark',
-		fileSync: setting.has('fileSync') ? setting.get('fileSync') : false
+		fileSync: setting.has('fileSync') ? setting.get('fileSync') : false,
+		items: []
 	},
 	getters: {
 		getTheme: state => {
@@ -16,16 +17,29 @@ const store = new Vuex.Store({
 		},
 		getFileSync: state => {
 			return state.fileSync
+		},
+		getItems: state => {
+			return state.items
 		}
 	},
 	actions: {
+		//setting actions
 		chnageTheme(...val) {
 			setting.set('theme', val[1])
-			console.log(val[1])
 		},
 		changeFileSync(...val) {
 			setting.set('fileSync', val[1])
-			console.log(val[1])
+		},
+
+		//items jobs
+		addToItems(...item) {
+			this.state.items.push(val[1])
+		},
+		removeItem(...index) {
+			this.state.items.splice(index[1])
+		},
+		removeAll() {
+			this.state.items = []
 		}
 	}
 })
